@@ -69,10 +69,11 @@ const CookieConsent = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+          className="fixed bottom-0 left-0 z-50 p-4 md:p-6"
+          style={{ maxWidth: '560px' }}
         >
           <div
-            className="max-w-6xl mx-auto rounded-2xl shadow-2xl border backdrop-blur-xl"
+            className="rounded-xl shadow-2xl border backdrop-blur-xl"
             style={{
               background: "hsl(var(--navy-light) / 0.95)",
               borderColor: "hsl(0 0% 100% / 0.1)",
@@ -80,50 +81,43 @@ const CookieConsent = () => {
           >
             {!showSettings ? (
               // Main Banner
-              <div className="p-6 md:p-8">
-                <div className="flex items-start gap-4">
+              <div className="p-4 md:p-5">
+                <div className="flex items-start gap-3">
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                     style={{ background: "hsl(var(--cyan) / 0.1)" }}
                   >
-                    <Cookie size={24} style={{ color: "hsl(var(--cyan))" }} />
+                    <Cookie size={20} style={{ color: "hsl(var(--cyan))" }} />
                   </div>
                   <div className="flex-1">
                     <h3
-                      className="font-heading text-xl font-bold mb-2"
+                      className="font-heading text-base font-bold mb-1.5"
                       style={{ color: "hsl(0 0% 95%)" }}
                     >
                       We Value Your Privacy
                     </h3>
                     <p
-                      className="text-sm mb-6 leading-relaxed"
+                      className="text-xs mb-4 leading-relaxed"
                       style={{ color: "hsl(0 0% 65%)" }}
                     >
                       We use cookies to enhance your browsing experience, serve
                       personalized content, and analyze our traffic. By clicking
-                      "Accept All", you consent to our use of cookies.{" "}
-                      <a
-                        href="/privacy-policy"
-                        className="underline hover:no-underline"
-                        style={{ color: "hsl(var(--cyan))" }}
-                      >
-                        Learn more
-                      </a>
+                      "Accept All", you consent to our use of cookies.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="flex flex-row gap-2">
                       <button
-                        onClick={handleAcceptAll}
-                        className="px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 hover:shadow-lg"
+                        onClick={() => setShowSettings(true)}
+                        className="flex-1 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 justify-center"
                         style={{
                           background: "var(--gradient-primary)",
                           color: "hsl(0 0% 100%)",
                         }}
                       >
-                        Accept All
+                        <Settings size={14} /> Customize
                       </button>
                       <button
                         onClick={handleRejectAll}
-                        className="px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 border"
+                        className="flex-1 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 border"
                         style={{
                           background: "hsl(0 0% 100% / 0.05)",
                           color: "hsl(0 0% 90%)",
@@ -133,26 +127,27 @@ const CookieConsent = () => {
                         Reject All
                       </button>
                       <button
-                        onClick={() => setShowSettings(true)}
-                        className="px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2 justify-center"
+                        onClick={handleAcceptAll}
+                        className="flex-1 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 hover:shadow-lg"
                         style={{
                           background: "transparent",
                           color: "hsl(var(--cyan))",
+                          border: "1px solid hsl(var(--cyan))",
                         }}
                       >
-                        <Settings size={16} /> Customize
+                        Accept All
                       </button>
                     </div>
                   </div>
                   <button
                     onClick={() => setShowBanner(false)}
-                    className="p-2 rounded-lg transition-colors flex-shrink-0"
+                    className="p-1.5 rounded-lg transition-colors flex-shrink-0"
                     style={{
                       color: "hsl(0 0% 60%)",
                       background: "hsl(0 0% 100% / 0.05)",
                     }}
                   >
-                    <X size={20} />
+                    <X size={16} />
                   </button>
                 </div>
               </div>

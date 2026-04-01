@@ -2,8 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X, Search, ArrowRight, Building2, Briefcase, Cpu, Lightbulb, Factory, Users, Phone, LogOut } from "lucide-react";
+import Logo from "@/assets/Logo/Logo1.png";
 import TechMegaMenu from "./TechMegaMenu";
 import { useAuth } from "@/contexts/AuthContext";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 const navItems = [
   {
     label: "Company",
@@ -168,6 +171,7 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -213,19 +217,14 @@ const Navbar = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-20 gap-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
-                <span className="font-heading font-bold text-lg" style={{ color: "hsl(0 0% 100%)" }}>N</span>
-              </div>
-              <span className="font-heading font-bold text-xl" style={{ color: "hsl(0 0% 100%)" }}>
-                NexaTech
-              </span>
+            <Link to="/" className="flex items-center gap-3 py-0">
+              <img src={Logo} alt="NexaTech Logo" className="h-10 w-auto" />
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-1 mr-auto ml-12">
+            <div className="hidden lg:flex items-center gap-0 flex-1 ml-4">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -288,10 +287,11 @@ const Navbar = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
+              <LanguageSwitcher />
               <Link
                 to="/contact"
-                className="px-5 py-2 text-sm font-medium rounded-lg transition-all duration-200 border"
+                className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border whitespace-nowrap"
                 style={{
                   color: "hsl(192 91% 52%)",
                   borderColor: "hsl(192 91% 52% / 0.3)",
@@ -306,7 +306,7 @@ const Navbar = () => {
                   e.currentTarget.style.borderColor = "hsl(192 91% 52% / 0.3)";
                 }}
               >
-                Contact Us
+                {t('nav.contactUs')}
               </Link>
               {user ? (
                 <div className="relative" ref={profileMenuRef}>
@@ -335,7 +335,7 @@ const Navbar = () => {
                           onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                         >
                           <LogOut size={14} />
-                          Sign Out
+                          {t('nav.signOut')}
                         </button>
                       </motion.div>
                     )}
@@ -344,7 +344,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   to="/auth"
-                  className="px-5 py-2 text-sm font-medium rounded-lg transition-all duration-200 border"
+                  className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border whitespace-nowrap"
                   style={{
                     color: "hsl(192 91% 52%)",
                     borderColor: "hsl(192 91% 52% / 0.3)",
@@ -359,7 +359,7 @@ const Navbar = () => {
                     e.currentTarget.style.borderColor = "hsl(192 91% 52% / 0.3)";
                   }}
                 >
-                  Login
+                  {t('nav.login')}
                 </Link>
               )}
             </div>
@@ -444,7 +444,7 @@ const Navbar = () => {
               ))}
               <div className="pt-6">
                 <Link to="/contact" className="btn-primary w-full text-center">
-                  Get Started
+                  {t('nav.getStarted')}
                 </Link>
               </div>
             </div>

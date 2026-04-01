@@ -12,6 +12,7 @@ import heroImage from "@/assets/hero-office.jpg";
 import techAbstract from "@/assets/tech-abstract.jpg";
 import globalMap from "@/assets/global-map.jpg";
 import dataCenter from "@/assets/data-center.jpg";
+import { useTranslation } from "react-i18next";
 
 const services = [
   { icon: Code2, title: "Custom Software Development", desc: "Scalable, enterprise-grade software tailored to your business needs." },
@@ -32,10 +33,10 @@ const industries = [
 ];
 
 const stats = [
-  { value: 500, suffix: "+", label: "Projects Delivered" },
-  { value: 200, suffix: "+", label: "Enterprise Clients" },
-  { value: 30, suffix: "+", label: "Countries Served" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
+  { value: 500, suffix: "+", label: "home.projectsDelivered" },
+  { value: 200, suffix: "+", label: "home.enterpriseClients" },
+  { value: 30, suffix: "+", label: "home.countriesServed" },
+  { value: 98, suffix: "%", label: "home.clientSatisfaction" },
 ];
 
 const testimonials = [
@@ -50,17 +51,20 @@ const trustedLogos = [
 
 const StatCounter = ({ value, suffix, label }: { value: number; suffix: string; label: string }) => {
   const { count, ref } = useCounter(value);
+  const { t } = useTranslation();
   return (
     <div ref={ref} className="text-center">
       <div className="font-heading font-bold text-5xl md:text-6xl counter-value mb-2">
         {count}{suffix}
       </div>
-      <div className="text-sm font-medium" style={{ color: "hsl(0 0% 55%)" }}>{label}</div>
+      <div className="text-sm font-medium" style={{ color: "hsl(0 0% 55%)" }}>{t(label)}</div>
     </div>
   );
 };
 
 const Index = () => {
+  const { t } = useTranslation();
+  
   return (
     <Layout>
       {/* Hero Section */}
@@ -87,23 +91,23 @@ const Index = () => {
           >
             <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8 text-xs font-medium tracking-wide" style={{ background: "hsl(234 89% 54% / 0.2)", color: "hsl(192 91% 52%)", border: "1px solid hsl(234 89% 54% / 0.3)" }}>
               <Zap size={14} />
-              ENTERPRISE TECHNOLOGY PARTNER
+              {t('home.heroTag')}
             </div>
             <h1 className="font-heading font-bold text-5xl md:text-7xl leading-[1.05] mb-6" style={{ color: "hsl(0 0% 100%)" }}>
-              Engineering the{" "}
-              <span className="gradient-text">Future</span> of
-              Enterprise Technology
+              {t('home.heroTitle').split('Future')[0]}
+              <span className="gradient-text">Future</span>
+              {t('home.heroTitle').split('Future')[1]}
             </h1>
             <p className="text-lg md:text-xl leading-relaxed mb-10 max-w-2xl" style={{ color: "hsl(0 0% 70%)" }}>
-              We build scalable, secure, and intelligent software solutions for the world's most ambitious organizations. From startups to Fortune 500.
+              {t('home.heroSubtitle')}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/contact" className="btn-primary">
-                Start Your Project
+                {t('home.startProject')}
                 <ArrowRight size={16} className="ml-2" />
               </Link>
               <Link to="/services" className="btn-outline-light">
-                Explore Services
+                {t('home.exploreServices')}
               </Link>
             </div>
           </motion.div>
@@ -114,7 +118,7 @@ const Index = () => {
       <section className="section-dark py-16 border-t" style={{ borderColor: "hsl(0 0% 100% / 0.05)" }}>
         <div className="max-w-7xl mx-auto px-6">
           <p className="text-center text-xs font-heading font-semibold uppercase tracking-[0.2em] mb-10" style={{ color: "hsl(0 0% 40%)" }}>
-            Trusted by industry leaders worldwide
+            {t('home.trustedBy')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-6">
             {trustedLogos.map((name) => (
@@ -131,12 +135,12 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] text-accent mb-4">Our Services</p>
+              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] text-accent mb-4">{t('home.ourServices')}</p>
               <h2 className="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">
-                End-to-End Technology Solutions
+                {t('home.servicesTitle')}
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                From concept to deployment, we deliver comprehensive technology services that drive business growth.
+                {t('home.servicesSubtitle')}
               </p>
             </div>
           </ScrollReveal>
@@ -151,7 +155,7 @@ const Index = () => {
                   <h3 className="font-heading font-semibold text-xl text-foreground mb-3">{s.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
                   <Link to="/services" className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all">
-                    Learn More <ArrowRight size={14} />
+                    {t('home.learnMore')} <ArrowRight size={14} />
                   </Link>
                 </div>
               </ScrollReveal>
@@ -168,9 +172,9 @@ const Index = () => {
           <ScrollReveal>
             <div className="text-center mb-16">
               <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4" style={{ color: "hsl(0 0% 100%)" }}>
-                Proven Track Record
+                {t('home.provenTrack')}
               </h2>
-              <p className="text-lg" style={{ color: "hsl(0 0% 55%)" }}>Numbers that speak for our commitment to excellence</p>
+              <p className="text-lg" style={{ color: "hsl(0 0% 55%)" }}>{t('home.provenSubtitle')}</p>
             </div>
           </ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -186,15 +190,15 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="left">
-              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "hsl(192 91% 52%)" }}>Industries</p>
+              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "hsl(192 91% 52%)" }}>{t('home.industriesTitle')}</p>
               <h2 className="font-heading font-bold text-4xl md:text-5xl mb-6" style={{ color: "hsl(0 0% 100%)" }}>
-                Deep Domain Expertise Across Industries
+                {t('home.industriesHeading')}
               </h2>
               <p className="text-lg leading-relaxed mb-8" style={{ color: "hsl(0 0% 55%)" }}>
-                We understand the unique challenges and regulatory requirements of each industry, delivering tailored solutions that drive measurable outcomes.
+                {t('home.industriesSubtitle')}
               </p>
               <div className="space-y-3">
-                {["Regulatory compliance expertise", "Industry-specific AI models", "Scalable enterprise architecture"].map((item) => (
+                {[t('home.regulatoryCompliance'), t('home.industryAI'), t('home.scalableArch')].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <CheckCircle2 size={18} style={{ color: "hsl(192 91% 52%)" }} />
                     <span className="text-sm" style={{ color: "hsl(0 0% 70%)" }}>{item}</span>
@@ -224,12 +228,12 @@ const Index = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-2xl">
-              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "hsl(192 91% 52%)" }}>Technology Stack</p>
+              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "hsl(192 91% 52%)" }}>{t('home.techStack')}</p>
               <h2 className="font-heading font-bold text-4xl md:text-5xl mb-6" style={{ color: "hsl(0 0% 100%)" }}>
-                Built with Best-in-Class Technologies
+                {t('home.techTitle')}
               </h2>
               <p className="text-lg leading-relaxed mb-8" style={{ color: "hsl(0 0% 65%)" }}>
-                We leverage the latest frameworks, cloud platforms, and AI tools to deliver future-proof solutions.
+                {t('home.techSubtitle')}
               </p>
               <div className="flex flex-wrap gap-3">
                 {["React", "Node.js", "Python", "AWS", "Azure", "Kubernetes", "TensorFlow", "PostgreSQL"].map((tech) => (
@@ -248,9 +252,9 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] text-accent mb-4">Testimonials</p>
+              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] text-accent mb-4">{t('home.testimonials')}</p>
               <h2 className="font-heading font-bold text-4xl md:text-5xl text-foreground mb-6">
-                What Our Clients Say
+                {t('home.testimonialsTitle')}
               </h2>
             </div>
           </ScrollReveal>
@@ -277,12 +281,12 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "hsl(192 91% 52%)" }}>Global Presence</p>
+              <p className="text-xs font-heading font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "hsl(192 91% 52%)" }}>{t('home.globalPresence')}</p>
               <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4" style={{ color: "hsl(0 0% 100%)" }}>
-                Delivering Excellence Worldwide
+                {t('home.globalTitle')}
               </h2>
               <p className="text-lg" style={{ color: "hsl(0 0% 55%)" }}>
-                With offices across 4 continents, we provide round-the-clock support and seamless collaboration.
+                {t('home.globalSubtitle')}
               </p>
             </div>
           </ScrollReveal>
@@ -293,10 +297,10 @@ const Index = () => {
           </ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
             {[
-              { city: "San Francisco", label: "Americas HQ" },
-              { city: "London", label: "EMEA HQ" },
-              { city: "Singapore", label: "APAC HQ" },
-              { city: "Dubai", label: "MEA Office" },
+              { city: "San Francisco", label: t('home.americasHQ') },
+              { city: "London", label: t('home.emeaHQ') },
+              { city: "Singapore", label: t('home.apacHQ') },
+              { city: "Dubai", label: t('home.meaOffice') },
             ].map((office) => (
               <ScrollReveal key={office.city}>
                 <div className="text-center">
@@ -317,18 +321,18 @@ const Index = () => {
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           <ScrollReveal>
             <h2 className="font-heading font-bold text-4xl md:text-6xl mb-6" style={{ color: "hsl(0 0% 100%)" }}>
-              Ready to Transform Your Business?
+              {t('home.ctaTitle')}
             </h2>
             <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto" style={{ color: "hsl(0 0% 100% / 0.8)" }}>
-              Let's discuss how our enterprise solutions can accelerate your digital transformation journey.
+              {t('home.ctaSubtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/contact" className="inline-flex items-center justify-center rounded-lg px-8 py-4 font-heading font-semibold text-sm tracking-wide transition-all duration-300" style={{ background: "hsl(0 0% 100%)", color: "hsl(234 89% 54%)" }}>
-                Schedule a Consultation
+                {t('home.scheduleConsult')}
                 <ArrowRight size={16} className="ml-2" />
               </Link>
               <Link to="/services" className="btn-outline-light">
-                View Case Studies
+                {t('home.viewCaseStudies')}
               </Link>
             </div>
           </ScrollReveal>

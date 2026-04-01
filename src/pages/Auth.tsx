@@ -24,7 +24,37 @@ const Auth = () => {
 
   useEffect(() => {
     if (user) navigate("/");
-  }, [user, navigate]);
+    
+    // Handle OAuth callback
+    const handleOAuthCallback = async () => {
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      const searchParams = new URLSearchParams(window.location.search);
+      
+      // Check if this is an OAuth callback (has access_token or code)
+      if (hashParams.get('access_token') || searchParams.get('code')) {
+        setLoading(true);
+        try {
+          // The session should be automatically set by Supabase
+          const { data: { session }, error } = await supabase.auth.getSession();
+          
+          if (error) throw error;
+          
+          if (session) {
+            toast({ title: "Success!", description: "You've been signed in successfully." });
+            // Clean up URL
+            window.history.replaceState({}, document.title, "/auth");
+            navigate("/");
+          }
+        } catch (error: any) {
+          toast({ title: "Error", description: error.message || "Failed to complete sign in", variant: "destructive" });
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+    
+    handleOAuthCallback();
+  }, [user, navigate, toast]);
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,12 +89,20 @@ const Auth = () => {
     setLoading(true);
     try {
       const result = await lovable.auth.signInWithOAuth(provider, {
-        redirect_uri: window.location.origin,
+        redirect_uri: `${window.location.origin}/auth`,
       });
       if (result.error) throw result.error;
+      
+      // If redirected is true, the user will be redirected to the OAuth provider
+      if (result.redirected) {
+        return;
+      }
+      
+      // If successful and not redirected, navigate to home
+      toast({ title: "Success!", description: "You've been signed in successfully." });
+      navigate("/");
     } catch (error: any) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
-    } finally {
       setLoading(false);
     }
   };
