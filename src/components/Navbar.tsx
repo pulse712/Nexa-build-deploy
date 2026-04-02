@@ -220,11 +220,11 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-20 gap-4">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 py-0">
-              <img src={Logo} alt="NexaTech Logo" className="h-10 w-auto" />
+              <img src={Logo} alt="NexaTech Logo" className="h-8 w-auto" />
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-0 flex-1 ml-4">
+            <div className="hidden lg:flex items-center gap-0 flex-1 ml-2">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -287,11 +287,10 @@ const Navbar = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
-              <LanguageSwitcher />
+            <div className="hidden lg:flex items-center gap-3 flex-shrink-0 ml-4">
               <Link
                 to="/contact"
-                className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border whitespace-nowrap"
+                className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border whitespace-nowrap flex-shrink-0"
                 style={{
                   color: "hsl(192 91% 52%)",
                   borderColor: "hsl(192 91% 52% / 0.3)",
@@ -309,7 +308,7 @@ const Navbar = () => {
                 {t('nav.contactUs')}
               </Link>
               {user ? (
-                <div className="relative" ref={profileMenuRef}>
+                <div className="relative flex-shrink-0" ref={profileMenuRef}>
                   <button
                     onClick={() => setProfileMenuOpen(!profileMenuOpen)}
                     className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-200"
@@ -323,7 +322,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
-                        className="absolute right-0 top-full mt-2 w-48 rounded-xl p-2"
+                        className="absolute right-0 top-full mt-2 w-48 rounded-xl p-2 z-[60]"
                         style={{ background: "hsl(222 47% 14%)", border: "1px solid hsl(0 0% 100% / 0.1)" }}
                       >
                         <p className="px-3 py-2 text-xs truncate" style={{ color: "hsl(0 0% 60%)" }}>{user.email}</p>
@@ -344,7 +343,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   to="/auth"
-                  className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border whitespace-nowrap"
+                  className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border whitespace-nowrap flex-shrink-0"
                   style={{
                     color: "hsl(192 91% 52%)",
                     borderColor: "hsl(192 91% 52% / 0.3)",
@@ -362,6 +361,9 @@ const Navbar = () => {
                   {t('nav.login')}
                 </Link>
               )}
+              <div className="flex-shrink-0">
+                <LanguageSwitcher />
+              </div>
             </div>
 
             {/* Mobile toggle */}

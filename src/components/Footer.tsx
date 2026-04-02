@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Github, Mail, MapPin, Phone, Facebook, Instagram, Youtube, MessageCircle, Send } from "lucide-react";
+import Logo from "@/assets/Logo/Logo1.png";
+import { useTranslation } from "react-i18next";
 
 // Custom SVG icons for platforms not in lucide-react
 const DiscordIcon = () => (
@@ -15,33 +17,34 @@ const SlackIcon = () => (
 );
 
 const Footer = () => {
+  const { t } = useTranslation();
+  
   const footerLinks = [
     {
-      title: "Services",
+      title: t('nav.services'),
       links: [
-        { label: "Custom Software", href: "/services" },
-        { label: "Cloud & DevOps", href: "/services" },
-        { label: "AI & ML", href: "/services" },
-        { label: "Cybersecurity", href: "/services" },
-        { label: "IT Consulting", href: "/services" },
+        { label: t('customDev'), href: "/services" },
+        { label: t('cloudDevops'), href: "/services" },
+        { label: t('aiMl'), href: "/services" },
+        { label: t('cybersecurity'), href: "/services" },
       ],
     },
     {
-      title: "Company",
+      title: t('company'),
       links: [
-        { label: "About Us", href: "/about" },
-        { label: "Leadership", href: "/about" },
-        { label: "Careers", href: "/about" },
-        { label: "Contact", href: "/contact" },
+        { label: t('aboutUs'), href: "/about" },
+        { label: t('leadership'), href: "/about" },
+        { label: t('careers'), href: "/about" },
+        { label: t('contact'), href: "/contact" },
       ],
     },
     {
-      title: "Industries",
+      title: t('industries'),
       links: [
-        { label: "Banking & Finance", href: "/services" },
-        { label: "Healthcare", href: "/services" },
-        { label: "Retail", href: "/services" },
-        { label: "Logistics", href: "/services" },
+        { label: t('banking'), href: "/services" },
+        { label: t('healthcare'), href: "/services" },
+        { label: t('retail'), href: "/services" },
+        { label: t('logistics'), href: "/services" },
       ],
     },
   ];
@@ -53,10 +56,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "var(--gradient-primary)" }}>
-                <span className="font-heading font-bold text-lg" style={{ color: "hsl(0 0% 100%)" }}>N</span>
-              </div>
-              <span className="font-heading font-bold text-xl" style={{ color: "hsl(0 0% 100%)" }}>NexaTech</span>
+              <img src={Logo} alt="NexaTech Logo" className="h-12 w-auto" />
             </Link>
             <p className="text-sm leading-relaxed mb-6" style={{ color: "hsl(0 0% 55%)" }}>
               Enterprise-grade technology solutions for global businesses. We transform ideas into scalable digital products.
@@ -64,15 +64,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm" style={{ color: "hsl(0 0% 55%)" }}>
                 <MapPin size={16} style={{ color: "hsl(192 91% 52%)" }} />
-                San Francisco · London · Singapore · Dubai
+                {t('locations')}
               </div>
               <div className="flex items-center gap-3 text-sm" style={{ color: "hsl(0 0% 55%)" }}>
                 <Mail size={16} style={{ color: "hsl(192 91% 52%)" }} />
-                hello@nexatech.com
+                {t('email')}
               </div>
               <div className="flex items-center gap-3 text-sm" style={{ color: "hsl(0 0% 55%)" }}>
                 <Phone size={16} style={{ color: "hsl(192 91% 52%)" }} />
-                +1 (555) 000-1234
+                {t('phone')}
               </div>
             </div>
           </div>
@@ -105,21 +105,21 @@ const Footer = () => {
         <div className="border-t pt-8" style={{ borderColor: "hsl(0 0% 100% / 0.08)" }}>
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
             <p className="text-sm" style={{ color: "hsl(0 0% 40%)" }}>
-              © 2026 NexaTech Global. All rights reserved.
+              {t('allRightsReserved')}
             </p>
             <div className="flex items-center gap-2 text-xs" style={{ color: "hsl(0 0% 40%)" }}>
-              <Link to="/privacy-policy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
+              <Link to="/privacy-policy" className="hover:text-cyan-400 transition-colors">{t('privacyPolicy')}</Link>
               <span>·</span>
-              <Link to="/terms" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
+              <Link to="/terms" className="hover:text-cyan-400 transition-colors">{t('termsOfService')}</Link>
               <span>·</span>
-              <Link to="/cookies" className="hover:text-cyan-400 transition-colors">Cookie Policy</Link>
+              <Link to="/cookies" className="hover:text-cyan-400 transition-colors">{t('cookiePolicy')}</Link>
             </div>
           </div>
           
           {/* Social Media Icons */}
           <div className="flex flex-col items-center gap-4">
             <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "hsl(0 0% 50%)" }}>
-              Connect With Us
+              {t('connectWithUs')}
             </p>
             <div className="flex items-center gap-3 flex-wrap justify-center">
               {/* LinkedIn */}

@@ -14,24 +14,6 @@ import globalMap from "@/assets/global-map.jpg";
 import dataCenter from "@/assets/data-center.jpg";
 import { useTranslation } from "react-i18next";
 
-const services = [
-  { icon: Code2, title: "Custom Software Development", desc: "Scalable, enterprise-grade software tailored to your business needs." },
-  { icon: Monitor, title: "Web & Mobile Applications", desc: "Responsive web and native mobile apps with exceptional UX." },
-  { icon: Cloud, title: "Cloud & DevOps", desc: "Cloud migration, infrastructure automation, and CI/CD pipelines." },
-  { icon: Brain, title: "AI & Machine Learning", desc: "Intelligent solutions powered by cutting-edge AI and data science." },
-  { icon: Shield, title: "Cybersecurity", desc: "Comprehensive security solutions to protect your digital assets." },
-  { icon: Smartphone, title: "Digital Transformation", desc: "End-to-end modernization of legacy systems and processes." },
-];
-
-const industries = [
-  { icon: Building2, name: "Banking & Finance", href: "/industries/banking-finance" },
-  { icon: Heart, name: "Healthcare", href: "/industries/healthcare" },
-  { icon: ShoppingCart, name: "Retail & E-commerce", href: "/industries/retail-ecommerce" },
-  { icon: Truck, name: "Logistics", href: "/industries/logistics" },
-  { icon: GraduationCap, name: "Education", href: "/industries/education" },
-  { icon: Factory, name: "Manufacturing", href: "/industries/manufacturing" },
-];
-
 const stats = [
   { value: 500, suffix: "+", label: "home.projectsDelivered" },
   { value: 200, suffix: "+", label: "home.enterpriseClients" },
@@ -64,6 +46,24 @@ const StatCounter = ({ value, suffix, label }: { value: number; suffix: string; 
 
 const Index = () => {
   const { t } = useTranslation();
+  
+  const services = [
+    { icon: Code2, title: t('customSoftware'), desc: t('customSoftwareDesc') },
+    { icon: Monitor, title: t('webMobile'), desc: t('webMobileDesc') },
+    { icon: Cloud, title: t('cloudDevops'), desc: t('cloudDevopsDesc') },
+    { icon: Brain, title: t('aiMl'), desc: t('aiMlDesc') },
+    { icon: Shield, title: t('cybersecurity'), desc: t('cybersecurityDesc') },
+    { icon: Smartphone, title: t('digitalTransform'), desc: t('digitalTransformDesc') },
+  ];
+
+  const industries = [
+    { icon: Building2, name: t('bankingFinance'), href: "/industries/banking-finance" },
+    { icon: Heart, name: t('healthcare'), href: "/industries/healthcare" },
+    { icon: ShoppingCart, name: t('retailEcommerce'), href: "/industries/retail-ecommerce" },
+    { icon: Truck, name: t('logistics'), href: "/industries/logistics" },
+    { icon: GraduationCap, name: t('education'), href: "/industries/education" },
+    { icon: Factory, name: t('manufacturing'), href: "/industries/manufacturing" },
+  ];
   
   return (
     <Layout>

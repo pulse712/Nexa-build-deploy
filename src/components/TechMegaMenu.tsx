@@ -137,15 +137,16 @@ const TechMegaMenu = () => {
                 </h4>
                 <div className="space-y-1">
                   {category.skills.map((skill) => (
-                    <span
+                    <Link
                       key={skill}
-                      className="block py-1 text-xs transition-colors duration-150 cursor-default"
+                      to="/technologies"
+                      className="block py-1 text-xs transition-colors duration-150"
                       style={{ color: "hsl(0 0% 60%)" }}
                       onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(0 0% 100%)")}
                       onMouseLeave={(e) => (e.currentTarget.style.color = "hsl(0 0% 60%)")}
                     >
                       {skill}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </div>

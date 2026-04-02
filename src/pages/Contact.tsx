@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import ScrollReveal from "@/components/ScrollReveal";
+import AlertDialog from "@/components/AlertDialog";
 import { useState } from "react";
 import { MapPin, Mail, Phone, Clock, Send, ArrowRight } from "lucide-react";
 import globalMap from "@/assets/global-map.jpg";
@@ -15,15 +16,23 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "", email: "", company: "", phone: "", service: "", message: ""
   });
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Form submission logic
-    alert("Thank you! We'll be in touch within 24 hours.");
+    setShowAlert(true);
   };
 
   return (
-    <Layout>
+    <>
+      <AlertDialog
+        isOpen={showAlert}
+        onClose={() => setShowAlert(false)}
+        title="Thank you!"
+        message="We'll be in touch within 24 hours."
+      />
+      <Layout>
       {/* Hero */}
       <section className="section-dark pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-6">
@@ -150,7 +159,10 @@ const Contact = () => {
                   <p className="text-sm text-muted-foreground mb-4">
                     Book a free 30-minute consultation with our solutions team to discuss your project needs.
                   </p>
-                  <button className="btn-primary w-full !text-sm">
+                  <button 
+                    onClick={() => window.open('https://calendly.com/miroclejohn/30min', '_blank')}
+                    className="btn-primary w-full !text-sm"
+                  >
                     Book a Meeting <ArrowRight size={14} className="ml-2" />
                   </button>
                 </div>
@@ -178,6 +190,7 @@ const Contact = () => {
         </div>
       </section>
     </Layout>
+    </>
   );
 };
 

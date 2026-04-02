@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Link } from "react-router-dom";
-import { ArrowRight, Linkedin, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const leadership = [
   { name: "Alexander Voronov", role: "Chief Executive Officer", bio: "20+ years in enterprise technology leadership. Previously led digital transformation at two Fortune 100 companies.", initials: "AV", image: "/src/assets/Photo/1774532499156_1774532499155-blob.jpg", bgImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop" },
@@ -61,17 +61,7 @@ const OurTeam = () => {
                     <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
                   </div>
                   <h3 className="font-heading font-bold text-2xl mb-3" style={{ color: "hsl(220 30% 15%)" }}>{person.name}</h3>
-                  <p className="text-base mb-8" style={{ color: "hsl(220 15% 40%)" }}>{person.bio}</p>
-                  <div className="flex items-center justify-center gap-4">
-                    <button className="flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:opacity-80" style={{ background: "transparent", border: "1px solid hsl(220 20% 75%)", color: "hsl(220 30% 20%)" }}>
-                      <Mail size={16} />
-                      Message
-                    </button>
-                    <button className="flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:opacity-90" style={{ background: "hsl(var(--indigo))", color: "hsl(0 0% 100%)" }}>
-                      <Linkedin size={16} />
-                      Connect
-                    </button>
-                  </div>
+                  <p className="text-base" style={{ color: "hsl(220 15% 40%)" }}>{person.bio}</p>
                 </div>
               </ScrollReveal>
             ))}
